@@ -1,0 +1,30 @@
+---
+permalink: /feed/rss.xml
+---
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+	<title>{{ metadata.siteTitle }}</title>
+	<subtitle>{{ metadata.siteDescription }}</subtitle>
+  {% set absoluteUrl %}{{ "/feed/rss.xml" | absoluteUrl(metadata.siteAddress) }}{% endset %}
+	<link href="{{ absoluteUrl }}" rel="self"/>
+	<link href="{{ metadata.siteAddress }}"/>
+	<updated>{{ posts[0]._updatedAt }}</updated>
+	<id>{{ metadata.siteAddress }}</id>
+	<author>
+		<name>{{ metadata.author.name }}</name>
+		<email>{{ metadata.author.email }}</email>
+	</author>
+	{%- for post in posts %}
+	{% set absolutePostUrl %}{{ ("posts/" + post.slug.current) | absoluteUrl(metadata.siteAddress) }}{% endset %}
+	<entry>
+		<title>{{ post.title }}</title>
+		<link href="{{ absolutePostUrl }}/"/>
+		<updated>{{ post.publishedAt }}</updated>
+		<id>{{ absolutePostUrl }}</id>
+		<content type="html">
+      {{ post.body | htmlToAbsoluteUrls(absolutePostUrl) }}
+      {{ "<hr/><p><a href='mailto:" | e }}{{ metadata.author.email }}{{ "?subject=Re: " | e }}{{ post.title }}{{ "'>" | e }}{{ 'Reply to this' }} {{ "</a></p>" | e }}
+    </content>
+	</entry>
+	{%- endfor %}
+</feed>

@@ -1,0 +1,48 @@
+{# Variables #}
+{% set pageTitle = title %}
+{% set pageTitleSocial = title or metadata.siteTitle %}
+{% set pageDescription = description or metadata.siteDescription %}
+{% set pageMainImage = mainImage %}
+{% set pageImageAlt = mainImageAlt or pageDescription %}
+{% set pageType = contentType or 'website' %}
+
+{% if pageMainImage %}
+  {% set pageImage = pageMainImage %}
+{% else %}
+  {% set pageImage = "https://fabiomrbarbosa.com/assets/images/socialmediacard.png" | url %}
+{% endif %}
+
+
+{# Meta tags #}
+<meta charset="utf-8">
+<title>{{ pageTitle + ' |' if pageTitle }} {{ metadata.siteTitle }}</title>
+<meta name="description" content="{{ pageDescription }}">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#e4655c">
+<meta name="image" content="{{ pageImage }}" />
+
+{# OpenGraph tags #}
+<meta property="og:url" content="https://fabiomrbarbosa.com{{ page.url }}"/>
+<meta property="og:type" content="{{ pageType }}" />
+<meta property="og:title" content="{{ pageTitleSocial }}" />
+<meta property="og:description" content="{{ pageDescription }}" />
+<meta property="og:image" content="{{ pageImage }}" />
+<meta property="og:image:alt" content="{{ pageImageAlt }}" />
+
+{# Twitter Card tags #}
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="{{ metadata.socialHandle }}" />
+<meta name="twitter:creator" content="{{ metadata.author.socialHandle }}" />
+
+<link rel="stylesheet" href="/assets/styles/main.css">
+
+<link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
+
+{# RSS Feed #}
+<link rel="alternate" href="/feed/rss.xml" type="application/atom+xml" title="{{ metadata.siteTitle }}">
+
+{# Manifest + Service Worker #}
+<link rel="manifest" href="/manifest.webmanifest">

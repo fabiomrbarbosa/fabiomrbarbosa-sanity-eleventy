@@ -1,0 +1,34 @@
+---
+layout: layouts/base
+templateClass: tmpl-category
+tags:
+  - categories
+  - nav
+eleventyComputed:
+  title: "{{ category.title }}"
+  description: "{{ category.description }}"
+  navTitle: "{{ category.title }}"
+  navOrder: "{{ category.order }}"
+pagination:
+  alias: category
+  data: categories
+  size: 1
+  addAllPagesToCollections: true
+permalink: "{{ category.slug.current }}/"
+---
+
+<div class="heading--category">
+  <div class="inner">
+    <h1 class="text-6xl tracking-tighter md:text-8xl">{{ category.title }}</h1>
+  </div>
+</div>
+
+<div class="archive--home">
+  <div class="inner">
+
+    {% set postslist = category.posts %}
+    {% include "partials/postslist.njk" %}
+
+    <p><a href="{{ '/' | url }}">← Home</a></p>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {%- include "partials/metadata.njk" -%}
+  </head>
+  <body class="{% if templateClass %}{{ templateClass }}{% endif %} pt-4">
+    <header>
+      <div class="text-lg sm:pt-12 inner md:grid md:grid-cols-2">
+        <a class="block mb-4 branding" href="{{ '/' | url }}">
+          <img src="/assets/images/logo.svg" alt class="w-16 mb-8"/>
+          <p class="block text-3xl font-semibold leading-7 site-title">All Kinds<br>of Everything</p>
+        </a>
+        <nav class="flex flex-col flex-wrap text-2xl md:mt-16 md:flex-row md:space-x-6">
+          {%- for nav in collections.nav | sortByNavOrder -%}
+          <a class="nav-item hover:underline focus:underline {% if nav.url == page.url %} nav-item-active underline{% endif %}" href="{{ nav.url | url }}">{{ nav.data.navTitle }}</a>
+          {%- endfor -%}
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      {{ content | safe }}
+    </main>
+
+    <footer class="text-white bg-gray-900">
+      <div class="inner">
+        <p><em>This is an <a href="https://www.11ty.io/">Eleventy</a> + <a href="https://www.sanity.io">Sanity.io</a> project inspired by the <a href="https://github.com/11ty/eleventy-base-blog"><code>eleventy-base-blog</code> repo</a>.</em></p>
+      </div>
+    </footer>
+
+    <!-- Current page: {{ page.url | url }} -->
+    <script>
+    if ("serviceWorker" in navigator){
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("/sw.js");
+      })
+    };
+    </script>
+  </body>
+</html>

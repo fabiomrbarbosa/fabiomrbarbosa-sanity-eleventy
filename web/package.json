@@ -1,0 +1,41 @@
+{
+  "name": "fabiomrbarbosa-web",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "css:watch": "postcss src/assets/styles/main.css -o src/_tmp/main.css --watch",
+    "css:build": "postcss src/assets/styles/main.css -o dist/assets/styles/main.css",
+    "clean": "npx del dist",
+    "serve": "npx eleventy --serve",
+    "dev": "npm run clean && concurrently \"npm run css:watch\" \"npm run serve\"",
+    "build": "ELEVENTY_PRODUCTION=true npx eleventy && NODE_ENV=production npm run css:build && npx workbox generateSW workbox-config.js",
+    "debug": "DEBUG=* npx eleventy"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@11ty/eleventy": "^0.11.1",
+    "@11ty/eleventy-plugin-rss": "^1.1.0",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^3.0.6",
+    "@sanity/block-content-to-markdown": "0.0.5",
+    "@sanity/cli": "^2.4.0",
+    "@sanity/client": "^2.2.6",
+    "@sanity/image-url": "^0.140.22",
+    "@tailwindcss/typography": "^0.4.0",
+    "autoprefixer": "^10.2.4",
+    "concurrently": "^6.0.0",
+    "cssnano": "^4.1.10",
+    "del-cli": "^3.0.1",
+    "dotenv": "^8.2.0",
+    "eleventy-plugin-sanity-image": "^0.1.1",
+    "groq": "^2.2.6",
+    "luxon": "^1.26.0",
+    "markdown-it": "^12.0.4",
+    "markdown-it-anchor": "^7.0.2",
+    "postcss-cli": "^8.3.1",
+    "tailwindcss": "^2.0.3",
+    "workbox-cli": "^6.1.1"
+  }
+}

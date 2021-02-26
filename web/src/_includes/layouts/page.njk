@@ -1,0 +1,38 @@
+---
+layout: layouts/base
+templateClass: tmpl-page
+eleventyComputed:
+  title: "{{ staticPage.title | safe }}"
+  description: "{{ staticPage.description | safe }}"
+  mainImage: "{{ staticPage.mainImage.asset.url }}"
+  mainImageAlt: "{{ staticPage.mainImage.alt | safe }}"
+  navTitle: "{{ staticPage.title | safe }}"
+  navOrder: "{{ staticPage.order }}"
+tags:
+  - pages
+  - nav
+pagination:
+  alias: staticPage
+  data: pages
+  size: 1
+  addAllPagesToCollections: true
+permalink: "/{{ staticPage.slug.current }}/"
+---
+
+<div class="heading--page">
+  <div class="inner">
+    <h1 class="text-6xl tracking-tighter md:text-8xl">{{ staticPage.publicTitle or staticPage.title }}</h1>
+  </div>
+</div>
+
+{% Image {
+  image: staticPage.mainImage,
+  mainImage: true,
+  lazy: false
+} %}
+
+<div class="content inner">
+  <div class="mx-auto text-lg prose max-w-prose md:text-xl">
+      {{ staticPage.body | markdownify | safe }}
+  </div>
+</div>

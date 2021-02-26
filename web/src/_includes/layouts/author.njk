@@ -1,0 +1,17 @@
+---
+layout: layouts/base
+templateClass: tmpl-author
+tags:
+  - authors
+pagination:
+  alias: author
+  data: authors
+  size: 1
+  addAllPagesToCollections: true
+permalink: authors/{{ author.slug.current }}/
+---
+<h1>{{ author.name }}</h1>
+
+{{ author.bio | markdownify | safe }}
+
+<p><a href="{{ '/' | url }}">← Home</a></p>

@@ -1,0 +1,25 @@
+---
+layout: layouts/base
+tags:
+  - nav
+navTitle: Home
+navOrder: 1
+permalink: /
+---
+
+<div class="heading--home">
+  <div class="py-24 inner">
+    <h1 class="text-6xl tracking-tighter md:text-8xl">A blog about Eurovision and other queer affairs.</h1>
+  </div>
+</div>
+
+<div class="archive--home">
+  <div class="inner">
+    <h2 class="mb-4 text-4xl">&#10022; Latest Posts</h2>
+
+    {% set postslist = posts %}
+    {% include "partials/postslist.njk" %}
+
+    <p>More posts can be found in <a href="{{ '/posts/' | url }}">the archive</a>.</p>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+{
+  "name": "fabiomrbarbosa",
+  "version": "2.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "lerna run build --parallel --concurrency 2",
+    "dev": "lerna run dev --parallel --concurrency 2",
+    "sanity-init": "(cd studio && npm run init)",
+    "build-studio": "(cd studio && npm run build)",
+    "build-web": "(cd web && npm run build)",
+    "postinstall-web": "(cd web && npm install)",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fabiomrbarbosa/fabiomrbarbosa-sanity-eleventy.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fabiomrbarbosa/fabiomrbarbosa-sanity-eleventy/issues"
+  },
+  "homepage": "https://github.com/fabiomrbarbosa/fabiomrbarbosa-sanity-eleventy#readme",
+  "dependencies": {
+    "lerna": "^3.13.4"
+  }
+}

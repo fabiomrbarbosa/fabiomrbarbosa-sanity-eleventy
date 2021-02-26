@@ -8,22 +8,22 @@ permalink: /feed/rss.xml
   {% set absoluteUrl %}{{ "/feed/rss.xml" | absoluteUrl(metadata.siteAddress) }}{% endset %}
 	<link href="{{ absoluteUrl }}" rel="self"/>
 	<link href="{{ metadata.siteAddress }}"/>
-	<updated>{{ posts[0]._updatedAt }}</updated>
+	<updated>{{ articles[0]._updatedAt }}</updated>
 	<id>{{ metadata.siteAddress }}</id>
 	<author>
 		<name>{{ metadata.author.name }}</name>
 		<email>{{ metadata.author.email }}</email>
 	</author>
-	{%- for post in posts %}
-	{% set absolutePostUrl %}{{ ("posts/" + post.slug.current) | absoluteUrl(metadata.siteAddress) }}{% endset %}
+	{%- for article in articles %}
+	{% set absolutePostUrl %}{{ (article.category.slug.current + '/' + article.slug.current) | absoluteUrl(metadata.siteAddress) }}{% endset %}
 	<entry>
-		<title>{{ post.title }}</title>
+		<title>{{ article.title }}</title>
 		<link href="{{ absolutePostUrl }}/"/>
-		<updated>{{ post.publishedAt }}</updated>
+		<updated>{{ article.publishedAt }}</updated>
 		<id>{{ absolutePostUrl }}</id>
 		<content type="html">
-      {{ post.body | htmlToAbsoluteUrls(absolutePostUrl) }}
-      {{ "<hr/><p><a href='mailto:" | e }}{{ metadata.author.email }}{{ "?subject=Re: " | e }}{{ post.title }}{{ "'>" | e }}{{ 'Reply to this' }} {{ "</a></p>" | e }}
+      {{ article.body | htmlToAbsoluteUrls(absolutePostUrl) }}
+      {{ "<hr/><p><a href='mailto:" | e }}{{ metadata.author.email }}{{ "?subject=Re: " | e }}{{ article.title }}{{ "'>" | e }}{{ 'Reply to this' }} {{ "</a></p>" | e }}
     </content>
 	</entry>
 	{%- endfor %}

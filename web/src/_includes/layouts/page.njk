@@ -19,20 +19,24 @@ pagination:
 permalink: "/{{ staticPage.slug.current }}/"
 ---
 
-<div class="heading--page">
-  <div class="inner">
-    <h1 class="text-6xl tracking-tighter md:text-8xl">{{ staticPage.publicTitle or staticPage.title }}</h1>
-  </div>
-</div>
+<article>
 
-{% Image {
-  image: staticPage.mainImage,
-  mainImage: true,
-  lazy: false
-} %}
+  <header class="heading--page">
+    <div class="inner">
+      <h1 class="text-6xl tracking-tighter md:text-8xl">{{ staticPage.publicTitle or staticPage.title }}</h1>
+    </div>
+  </header>
 
-<div class="content inner">
-  <div class="mx-auto text-lg prose max-w-prose md:text-xl">
-      {{ staticPage.body | markdownify | safe }}
+  {% Image {
+    image: staticPage.mainImage,
+    mainImage: true,
+    lazy: false
+  } %}
+
+  <div class="content inner">
+    <div class="mx-auto text-lg prose max-w-prose md:text-xl">
+        {{ staticPage.body | markdownify | safe }}
+    </div>
   </div>
-</div>
+
+</article>

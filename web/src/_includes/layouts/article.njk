@@ -1,0 +1,51 @@
+---
+layout: layouts/base
+templateClass: tmpl-article
+contentType: article
+eleventyComputed:
+  title: "{{ article.title | safe }}"
+  description: "{{ article.description | safe }}"
+  mainImage: "{{ article.mainImage.asset.url }}"
+  mainImageAlt: "{{ article.mainImage.alt | safe }}"
+tags:
+  - articles
+pagination:
+  alias: article
+  data: articles
+  size: 1
+  addAllPagesToCollections: true
+permalink: "/{{ article.category.slug.current }}/{{ article.slug.current }}/"
+---
+
+<article>
+
+  <header class="heading--home">
+    <div class="inner">
+      {%- include "partials/categorylink.njk" -%}
+      <h1 class="mb-6 text-4xl md:text-6xl">{{ article.title }}</h1>
+
+      <div class="flex space-x-4 meta">
+        <img src="{{ article.author.image.asset.url }}?auto=format&amp;w=56&amp;h=56" width="56" height="56" alt="{{ article.author.name }}" class="rounded-full" />
+        <p class="text-lg">
+          <span class="block">{{ article.author.name }}</span>
+          <time class="block" datetime="{{ article.publishedAt }}">{{ article.publishedAt | readableDate }}</time>
+        </p>
+      </div>
+    </div>
+  </header>
+
+  {% Image {
+    image: article.mainImage,
+    mainImage: true,
+    lazy: false
+  } %}
+
+  <div class="content inner">
+    <div class="mx-auto text-lg prose max-w-prose md:text-xl">
+      {{ article.body | markdownify | safe }}
+    </div>
+  </div>
+
+</article>
+
+{%- include "partials/articlenav.njk" -%}

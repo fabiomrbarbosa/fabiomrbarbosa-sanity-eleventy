@@ -26,8 +26,8 @@ permalink: "{{ category.slug.current }}/"
 <div class="archive--home">
   <div class="inner">
 
-    {% set postslist = category.posts %}
-    {% include "partials/postslist.njk" %}
+    {% set articlelist = category.articles %}
+    {% include "partials/articlelist.njk" %}
 
     <p><a href="{{ '/' | url }}">← Home</a></p>
   </div>

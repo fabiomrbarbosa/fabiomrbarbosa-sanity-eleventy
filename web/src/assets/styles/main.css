@@ -1,16 +1,4 @@
 @tailwind base;
-
-body:before {
-  position:absolute;
-  content:'';
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1rem;
-  background: rgb(255,255,255);
-  background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 16%, rgba(255,252,0,1) 16%, rgba(255,252,0,1) 30%, rgba(0,212,255,1) 30%, rgba(0,212,255,1) 44%, rgba(48,255,0,1) 44%, rgba(48,255,0,1) 58%, rgba(252,0,255,1) 58%, rgba(252,0,255,1) 72%, rgba(255,0,0,1) 72%, rgba(255,0,0,1) 86%, rgba(0,18,255,1) 86%, rgba(0,18,255,1) 100%);
-}
-
 @tailwind components;
 @tailwind utilities;
 

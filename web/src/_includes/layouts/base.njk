@@ -6,9 +6,9 @@
   <body class="{% if templateClass %}{{ templateClass }}{% endif %} pt-4">
     <header>
       <div class="text-lg sm:pt-12 inner md:grid md:grid-cols-2">
-        <a class="block mb-4 branding" href="{{ '/' | url }}">
+        <a class="mb-4 branding" href="{{ '/' | url }}">
           <img src="/assets/images/logo.svg" alt class="w-16 mb-8"/>
-          <p class="block text-3xl font-semibold leading-7 site-title">All Kinds<br>of Everything</p>
+          <p class="text-3xl font-semibold leading-7 site-title">Fábio M.R. Barbosa</p>
         </a>
         <nav class="flex flex-col flex-wrap text-2xl md:mt-16 md:flex-row md:space-x-6">
           {%- for nav in collections.nav | sortByNavOrder -%}

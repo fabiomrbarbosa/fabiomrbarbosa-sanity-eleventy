@@ -10,7 +10,7 @@ import blockContent from './blockContent'
 import category from './category'
 import tag from './tag'
 import page from './page'
-import post from './post'
+import article from './article'
 import author from './author'
 
 // Then we give our schema to the builder and provide the result to Sanity
@@ -23,7 +23,7 @@ export default createSchema({
     // The following are document types which will appear
     // in the studio.
     siteSettings,
-    post,
+    article,
     page,
     author,
     category,

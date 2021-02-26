@@ -1,0 +1,29 @@
+{% set previousArticle = collections.articles | getPreviousCollectionItem(page) %}
+{% set nextArticle = collections.articles | getNextCollectionItem(page) %}
+
+{% if previousArticle or nextArticle %}
+<div class="postnav">
+  <div class="postnav__inner">
+    <h3 class="postnav__title">Article Nav</h3>
+
+    <div class="postnav__items">
+      {% if previousArticle %}
+      <div class="postnav__item">
+        <a class="postnav__link" href="{{ previousArticle.url }}">
+          <p class="postnav__heading">Previous</p>
+          <p class="postnav__description">{{ previousArticle.data.title }}</p>
+        </a>
+      </div>
+      {% endif %}
+      {% if nextArticle %}
+      <div class="postnav__item">
+        <a class="postnav__link" href="{{ nextArticle.url }}">
+          <p class="postnav__heading">Next</p>
+          <p class="postnav__description">{{ nextArticle.data.title }}</p>
+        </a>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endif %}

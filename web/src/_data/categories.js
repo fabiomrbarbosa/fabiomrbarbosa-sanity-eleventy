@@ -1,18 +1,17 @@
 const groq = require('groq')
 const client = require('../_utils/sanityClient')
-const imageUrl = require("../_utils/imageUrl");
 
 module.exports = async function() {
   function generateCategory(category) {
-    const posts = category.posts.map(
-      post => ({
-        ...post,
+    const articles = category.articles.map(
+      article => ({
+        ...article,
       })
     )
 
     return {
       ...category,
-      posts,
+      articles,
     }
   }
 
@@ -20,7 +19,7 @@ module.exports = async function() {
     const docs = await client.fetch(groq`
       *[_type == "category"]{
         ...,
-        "posts": *[_type == "post" && references(^._id)]{
+        "articles": *[_type == "article" && references(^._id)]{
           title,
           slug,
           publishedAt,

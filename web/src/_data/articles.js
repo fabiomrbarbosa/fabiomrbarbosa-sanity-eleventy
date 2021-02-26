@@ -4,15 +4,15 @@ const client = require("../_utils/sanityClient.js");
 const serializers = require("../_utils/serializers");
 
 module.exports = async function () {
-  function generatePost(post) {
+  function generateArticle(article) {
     return {
-      ...post,
-      body: BlocksToMarkdown(post.body, { serializers, ...client.config() }),
+      ...article,
+      body: BlocksToMarkdown(article.body, { serializers, ...client.config() }),
     };
   }
 
-  async function getPosts() {
-    const filter = groq`*[_type == "post" && defined(slug) && publishedAt < now()]`;
+  async function getArticles() {
+    const filter = groq`*[_type == "article" && defined(slug) && publishedAt < now()]`;
     const projection = groq`{
       ...,
       author->{
@@ -45,9 +45,9 @@ module.exports = async function () {
     const order = `| order(publishedAt desc)`;
     const query = [filter, projection, order].join(" ");
     const docs = await client.fetch(query).catch((err) => console.error(err));
-    const preparePosts = docs.map(generatePost);
-    return preparePosts;
+    const prepareArticles = docs.map(generateArticle);
+    return prepareArticles;
   }
 
-  return await getPosts();
+  return await getArticles();
 };
